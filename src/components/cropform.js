@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "../locationContext.js";
+import "../App.css";
 
 function CropForm() {
   const { location } = useLocation(); // Access location state
@@ -59,7 +60,7 @@ function CropForm() {
 
   return (
     <div>
-      <h2>Crop Information Form</h2>
+      <div className="header">Crop Information Form</div>
       <form onSubmit={handleSubmit}>
         {/* Crop Type */}
         <div>

@@ -1,6 +1,8 @@
 .App {
   text-align: center;
+  font-family: "Lexend", sans-serif;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -11,6 +13,29 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.title {
+  color: #175A89;
+  font-size: 32px;
+  font-weight: bolder;
+  margin: 20px;
+}
+
+.header {
+  color: #70A288;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px;
+}
+
+button {
+  border-radius: 15px;
+  border-color: transparent;
+  background-color: #C5775C;
+  color: white;
+  padding: 7px;
+  margin: 10px;
 }
 
 .App-header {

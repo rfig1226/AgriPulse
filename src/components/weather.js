@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "../locationContext.js";
+import "../App.css";
 
 function Weather() {
   const { location, setLocation } = useLocation();
@@ -52,7 +53,7 @@ function Weather() {
 
   return (
     <div>
-      <h2>Weather Information</h2>
+      <div className="header">Weather Information</div>
       <button onClick={handleGetLocation}>Get My Location</button>
       {error ? (
         <p>{error}</p>
