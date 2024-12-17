@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "../locationContext.js";
 
 function Weather() {
-  const [location, setLocation] = useState({ lat: null, lon: null });
+  const { location, setLocation } = useLocation();
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchWeatherData = async (lat, lon) => {
     try {
-      console.log("fetching weather data");
+      console.log("fetching weather data...");
+      setLoading(true);
       const response = await fetch(
-        `http://127.0.0.1:5000/fetch_weather?lat=${lat}&lon=${lon}`
+        `http://127.0.0.1:5002/fetch_weather?lat=${lat}&lon=${lon}`
       );
 
       if (!response.ok) {
@@ -21,7 +24,14 @@ function Weather() {
       setWeatherData(data); // Set the state with the weather data
     } catch (err) {
       setError("Error fetching weather data: " + err.message);
+    } finally {
+      setLoading(false); // Stop loading
     }
+  };
+
+  const truncateNumber = (num) => {
+    if (typeof num !== "number") return num;
+    return parseFloat(num.toPrecision(3));
   };
 
   const handleGetLocation = () => {
@@ -46,14 +56,40 @@ function Weather() {
       <button onClick={handleGetLocation}>Get My Location</button>
       {error ? (
         <p>{error}</p>
+      ) : loading ? (
+        <p>Fetching weather data...</p>
       ) : weatherData ? (
-        <div>
-          <p>Temperature: {weatherData.temperature} °C</p>
-          <p>Wind Speed: {weatherData.windspeed} km/h</p>
-          <p>Weather Code: {weatherData.weathercode}</p>
-        </div>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th>Temperature (°F)</th>
+              <th>Humidity (%)</th>
+              <th>Precipitation (inch)</th>
+              <th>Rain (inch)</th>
+              <th>Showers (inch)</th>
+              <th>Snowfall (inch)</th>
+              <th>Wind Speed (mph)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{truncateNumber(weatherData.current_temperature_2m)}</td>
+              <td>
+                {truncateNumber(weatherData.current_relative_humidity_2m)}
+              </td>
+              <td>{truncateNumber(weatherData.current_precipitation)}</td>
+              <td>{truncateNumber(weatherData.current_rain)}</td>
+              <td>{truncateNumber(weatherData.current_showers)}</td>
+              <td>{truncateNumber(weatherData.current_snowfall)}</td>
+              <td>{truncateNumber(weatherData.current_wind_speed_10m)}</td>
+            </tr>
+          </tbody>
+        </table>
       ) : (
-        <p>Click the button to fetch weather data...</p>
+        <p>
+          Click the button to fetch local weather data at your crop(s)
+          location...
+        </p>
       )}
     </div>
   );
