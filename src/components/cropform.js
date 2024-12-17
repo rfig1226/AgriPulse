@@ -35,15 +35,18 @@ function CropForm() {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:5002/generate_insights", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          crop_data: formData,
-          lat: location.lat,
-          lon: location.lon,
-        }),
-      });
+      const response = await fetch(
+        "https://agripulse-backend.onrender.com/generate_insights",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            crop_data: formData,
+            lat: location.lat,
+            lon: location.lon,
+          }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to generate insights");
 

@@ -12,7 +12,7 @@ function Weather() {
       console.log("fetching weather data...");
       setLoading(true);
       const response = await fetch(
-        `http://127.0.0.1:5002/fetch_weather?lat=${lat}&lon=${lon}`
+        `https://agripulse-backend.onrender.com/fetch_weather?lat=${lat}&lon=${lon}`
       );
 
       if (!response.ok) {
