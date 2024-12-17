@@ -232,7 +232,7 @@ function CropForm() {
         <button type="submit">Get Insights</button>
       </form>
       {insights && (
-        <div>
+        <div className="insights">
           <h3>Insights for {formData.cropType} Crop</h3>
           {/* Format response into sections */}
           {insights.split("\n").map((line, index) => {

@@ -11,7 +11,6 @@ function Weather() {
   const fetchWeatherData = async (lat, lon) => {
     try {
       console.log("fetching weather data...");
-      setLoading(true);
       const response = await fetch(
         `https://agripulse-backend.onrender.com/fetch_weather?lat=${lat}&lon=${lon}`
       );
@@ -36,6 +35,7 @@ function Weather() {
   };
 
   const handleGetLocation = () => {
+    setLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -53,7 +53,7 @@ function Weather() {
 
   return (
     <div>
-      <div className="header">Weather Information</div>
+      <div className="header">Local Weather Information</div>
       <button onClick={handleGetLocation}>Get My Location</button>
       {error ? (
         <p>{error}</p>
@@ -88,8 +88,8 @@ function Weather() {
         </table>
       ) : (
         <p>
-          Click the button to fetch local weather data at your crop(s)
-          location...
+          Click the button to fetch local weather data at your crop's location
+          to use for specialized insights and recommendations!
         </p>
       )}
     </div>

@@ -36,6 +36,32 @@ button {
   color: white;
   padding: 7px;
   margin: 10px;
+  font-family: "Lexend", sans-serif;
+}
+
+label {
+  margin: 10px;
+  color: #175A89;
+}
+
+table {
+  background-color: #ebf2f7;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+input, select {
+  margin: 10px;
+  border: 2px solid #70A288;
+  border-radius: 8px;
+}
+
+p{
+  color: #175A89;
+}
+
+.insights {
+  max-width: 500px;
 }
 
 .App-header {
