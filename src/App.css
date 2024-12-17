@@ -17,7 +17,7 @@
 
 .title {
   color: #175A89;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: bolder;
   margin: 20px;
 }
@@ -39,8 +39,20 @@ button {
   font-family: "Lexend", sans-serif;
 }
 
+button:hover {
+  background-color: #5c220d;
+}
+
+button:active {
+  background-color: #5c220d;
+}
+
 label {
   margin: 10px;
+  color: #175A89;
+}
+
+a {
   color: #175A89;
 }
 
@@ -48,11 +60,10 @@ table {
   background-color: #ebf2f7;
   color: #175A89;
   border-radius: 20px;
-  padding: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding-top: 20px;
+  margin: 20px auto; 
+  width: fit-content;
+  text-align: center;
 }
 
 input, select {
@@ -63,6 +74,14 @@ input, select {
 
 p{
   color: #175A89;
+}
+
+.intro {
+  color: #7491a6;
+  width: 85%;
+  font-style: italic;
+  font-size: 14px;
+  margin: 20px auto;
 }
 
 .insights {

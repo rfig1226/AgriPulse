@@ -21,6 +21,7 @@ function CropForm() {
 
   const [errors, setErrors] = useState({});
   const [insights, setInsights] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +35,8 @@ function CropForm() {
       setErrors("Crop Type is required!");
       return;
     }
+
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -55,6 +58,8 @@ function CropForm() {
       setInsights(data.insights);
     } catch (err) {
       setErrors("Error generating insights: " + err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -231,9 +236,19 @@ function CropForm() {
         {/* Submit Button */}
         <button type="submit">Get Insights</button>
       </form>
-      {insights && (
+
+      {loading && (
+        <p>
+          Fetching personalized insights and recommendations for your{" "}
+          <strong>{formData.cropType}</strong> crops...
+        </p>
+      )}
+
+      {insights && !loading && (
         <div className="insights">
-          <div className="header">Insights for {formData.cropType} Crop</div>
+          <div className="header">
+            Insights for <strong>{formData.cropType}</strong> Crop
+          </div>
           {/* Format response into sections */}
           {insights.split("\n").map((line, index) => {
             // Check for Subheadings like "* **Temperature:**"
