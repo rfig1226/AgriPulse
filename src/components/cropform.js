@@ -233,7 +233,7 @@ function CropForm() {
       </form>
       {insights && (
         <div className="insights">
-          <h3>Insights for {formData.cropType} Crop</h3>
+          <div className="header">Insights for {formData.cropType} Crop</div>
           {/* Format response into sections */}
           {insights.split("\n").map((line, index) => {
             // Check for Subheadings like "* **Temperature:**"

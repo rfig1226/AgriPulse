@@ -60,7 +60,7 @@ function Weather() {
       ) : loading ? (
         <p>Fetching weather data...</p>
       ) : weatherData ? (
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table style={{ width: "80%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               <th>Temperature (°F)</th>
